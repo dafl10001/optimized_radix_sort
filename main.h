@@ -10,14 +10,14 @@
 #define true 1
 #define false 0
 
-inline void countSortPass(int* src, int* dst, int size, int shift, int* offsets) {
+static inline void countSortPass(int* src, int* dst, int size, int shift, int* offsets) {
     for (int i = 0; i < size; i++) {
         int byte = (src[i] >> shift) & 0xFF;
         dst[offsets[byte]++] = src[i];
     }
 }
 
-inline void radixSort(int* list, int size) {
+static inline void radixSort(int* list, int size) {
     int* buffer = (int*)malloc(size * sizeof(int));
     if (!buffer) return;
 
