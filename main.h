@@ -10,6 +10,8 @@
 #define true 1
 #define false 0
 
+void swap(int* a, int* b);
+
 static inline void countSortPass(int* src, int* dst, int size, int shift, int* offsets) {
     for (int i = 0; i < size; i++) {
         int byte = (src[i] >> shift) & 0xFF;
@@ -48,4 +50,36 @@ static inline void radixSort(int* list, int size) {
 
     free(buffer);
 }
+
+
+static inline int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+
+    swap(&arr[i + 1], &arr[high]);  
+    return i + 1;
+}
+
+static inline void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+
+static inline void swap(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
 #endif
