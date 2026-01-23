@@ -1,5 +1,5 @@
-#ifndef RADIX_SORT_H
-#define RADIX_SORT_H
+#ifndef CUSTOM_SORTS_H
+#define CUSTOM_SORTS_H
 
 #include <stdio.h>
 #include <string.h>
@@ -69,14 +69,12 @@ static inline int partition(int arr[], int low, int high) {
 static inline void quickSort(int arr[], int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
-
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
 }
 
-
-static inline void swap(int* a, int* b) {
+inline void swap(int* a, int* b) {
     int t = *a;
     *a = *b;
     *b = t;
